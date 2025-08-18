@@ -14,11 +14,12 @@ const UpdateItem= (context)=>{
     const [email,setEmail] = useState("")
     const router= useRouter()
     const loginUserEmail =useAuth()
+    console.log(loginUserEmail)
 
     useEffect(() => {
      const getSingleItem= async(id)=>{
-     const responce = await fetch(`http://localhost:3000/api/item/readsingle/${id}`,{cache:"no-store"})
-     const jsonData = await responce.json()
+     const response = await fetch(`http://localhost:3000/api/item/readsingle/${id}`,{cache:"no-store"})
+     const jsonData = await response.json()
      const singleItem = jsonData.singleItem
      
      setTitle(singleItem.title)
@@ -33,7 +34,7 @@ const UpdateItem= (context)=>{
     const handleSubmit=async(e)=>{
         e.preventDefault()
         try{
-            const response= await fetch('http://localhost:3000/api/item/update/${context.params.id}',{
+            const response= await fetch(`http://localhost:3000/api/item/update/${context.params.id}`,{
                 method:"PUT",
                 headers:{
                     "Accept":"application/json",
@@ -58,10 +59,10 @@ const UpdateItem= (context)=>{
         }
     }
 
-    if(loginUserEmail===email){
+    if(loginUserEmail === email){
         return(
             <div>
-                <h1>アイテム編集</h1>
+                <h1 className="page-title">アイテム編集</h1>
                 <form onSubmit={handleSubmit}>
                     <input value ={title} onChange={(e)=>setTitle(e.target.value)}
                     type="text" name="title" placeholder="アイテム名" required/>

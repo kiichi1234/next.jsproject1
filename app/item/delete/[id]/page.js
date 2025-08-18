@@ -18,8 +18,8 @@ const DeleteItem= (context)=>{
 
     useEffect(() => {
      const getSingleItem= async(id)=>{
-     const responce = await fetch(`http://localhost:3000/api/item/readsingle/${id}`,{cache:"no-store"})
-     const jsonData = await responce.json()
+     const response = await fetch(`http://localhost:3000/api/item/readsingle/${id}`,{cache:"no-store"})
+     const jsonData = await response.json()
      const singleItem = jsonData.singleItem
      
      setTitle(singleItem.title)
@@ -34,7 +34,7 @@ const DeleteItem= (context)=>{
     const handleSubmit=async(e)=>{
         e.preventDefault()
         try{
-            const response= await fetch('http://localhost:3000/api/item/delete/${context.params.id}',{
+            const response= await fetch(`http://localhost:3000/api/item/delete/${context.params.id}`,{
                 method:"DELETE",
                 headers:{
                     "Accept":"application/json",
@@ -58,11 +58,11 @@ const DeleteItem= (context)=>{
     if(loginUserEmail===email){
         return(
             <div>
-                <h1>アイテム削除</h1>
+                <h1 className="page-title">アイテム削除</h1>
                 <form onSubmit={handleSubmit}>
                     <h2>{title}</h2>
                     <Image src={image} width={750} height={500} alt="item-image" priority/>
-                    <h3>/{price}</h3>
+                    <h3>¥{price}</h3>
                     <p>{description}</p>
                     <button>削除</button>
                 </form>

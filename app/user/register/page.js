@@ -15,7 +15,7 @@ const Register=()=>{
                 method:"POST",
                 headers:{
                     "Accept":"application/json",
-                    "Content-type":"application/json"
+                    "Content-Type":"application/json"
                 },
                 body:JSON.stringify({
                     name:name,
@@ -28,12 +28,12 @@ const Register=()=>{
             const jsonData= await response.json()
             alert (jsonData.message)
         }catch{
-            alert("ユーザー登録")
+            alert("ユーザー登録失敗")
         }
     }
     return(
         <div>
-            <h1>ユーザー登録</h1>
+            <h1 className="page-title">ユーザー登録</h1>
             <form onSubmit={handleSubmit}>
                 <input value={name} 
                     onChange={(e)=>{
